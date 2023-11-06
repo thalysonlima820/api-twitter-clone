@@ -6,6 +6,7 @@ use App\Models\Usuario;
 
 $app->group('/api/v1', function(){
 
+    // PESQUISAR USUARIO
     $this->get('/usuarios/lista/{id_logado}/{nome}', function( Request $request, Response $response, $args){
         $idUsuario = $args['id_logado'];
         $nome = $args['nome'];
@@ -36,6 +37,7 @@ $app->group('/api/v1', function(){
     });
     
 
+    // LISTA DE TODOS OS USUARIOS
      $this->get('/usuarios/lista', function( Request $request, Response $response, $args){
 
             $usuario = Usuario::get();

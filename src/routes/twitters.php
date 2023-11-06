@@ -9,7 +9,6 @@ use App\Models\Twitter;
 $app->group('/api/v1', function(){
 	
 	// LISTA DE POST
-
     $this->get('/tweets/{id_logado}', function($request, $response, $args) {
         
         $idUsuario = $args['id_logado'];
@@ -44,10 +43,9 @@ $app->group('/api/v1', function(){
         return $response->withJson(['tweets' => $tl]);
     });
     
-    //METODO DE POSTAGEM USANDO API GET
+    //PROCURANDO POR TWITTER
 
     $this->get('/tweets/adiciona/{id_usuario}/{tweet}', function($request, $response){
-
 
         $db = $this->get('db');
 
@@ -64,7 +62,7 @@ $app->group('/api/v1', function(){
 
 	});
 
-        //METODO DE POSTAGEM USANDO API POST
+        //POSTAGEM DE TWITTER
 
     $this->post('/tweets/adiciona', function($request, $response){
 		
@@ -74,6 +72,15 @@ $app->group('/api/v1', function(){
 
 		$Tweet = Tweet::create( $dados );
 		return $response->withJson( $Tweet );
+
+    });    
+
+    // REMOVER TWITTER
+    $this->post('/tweets/remover/{id_twitter}', function($request, $response, $args){
+		
+		$tweet = Tweet::findOrFail( $args['id_twitter']);
+        $tweet->delete();
+		return $response->withJson( $tweet );
 
     });    
 
