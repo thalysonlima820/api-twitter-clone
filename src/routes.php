@@ -8,3 +8,5 @@ use Slim\Http\Response;
 // Routes
 
 require __DIR__ . '/routes/twitters.php';
+
+require __DIR__ . '/routes/Usuarios.php';
